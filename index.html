@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Examplr</title>
+
+    <style>
+        
+    </style>
+
+</head>
+<body>
+    <div id="root"></div>
+    <!-- <button id="btn_plus"></button> -->
+    <script crossorigin src="https://unpkg.com/react@17/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"></script>
+    <script type="text/babel">
+        console.log(React);
+        console.log(ReactDOM);
+
+        //const root = document.querySelector("#root");
+        //const btn_plus = document.querySelector("#btn_plus");
+
+        //let i =0;
+
+        //root.innerHTML = "<p>int : 0</p>";
+
+
+       // btn_plus.addEventListener("click", () => {
+      //      root.innerHTML = `<p>init : ${i++}</p>`;
+     //   });
+
+//==================================================================
+//component를 만들어서 사용하는 방식 , 컴포넌트를 만들때 초기값 아래와같다.
+ //   const component = {
+   //     message : `init`,
+    //    count : 0,
+     //   render(){
+//            return `<p>${this.message}${this.count}</p>`
+//        }
+//    };
+//    function render(rootElement, component){
+//        rootElement.innerHTML = component.render();
+//    }
+    //초기화
+//    render(document.querySelector('#root'), component);
+
+
+//    document.querySelector("#btn_plus").addEventListener("click",() => {
+//        component.message = "update";
+//        component.count = component.count + 1;
+
+//        render(document.querySelector('#root'), component);
+//    });
+
+//----------------------------------------------------------------------------------
+//리액트를 사용했을때
+
+//ReactDOM.render(/*리액트 컴포넌트*/, document.querySelector('#root'));
+
+//<p hello="world">    아래의 의미는 나는 p 태그를 쓸것이고 null값에 hello값을 넣을거야 라는의미.
+    //null이기 때문에  그냥 <p> </p> 만 있음.
+    //<p>`${props.message}:${props.count}` "</p>
+//리액트 컴포넌트 만들기
+//const Component = props =>{
+//    return React.createElement('p',null,`${props.message}:${props.count}`)
+//}
+
+
+
+
+
+//ReactDOM.render(React.createElement(Component, {message:`init`, count:0},null), 
+//document.querySelector('#root')
+//);
+
+//document.querySelector("#btn_plus").addEventListener("click",() => {
+//    ReactDOM.render(
+//        React.createElement(
+//            Component, 
+//            {message:`update`, count:10},
+ //           null
+ //           ), 
+//            document.querySelector('#root')
+//        );
+
+//        });
+
+//==================================================================
+//Class Component 작성
+//정의
+
+//class ClassComponent extends React.Component{
+//    render() {  //render 메소드 정의하고  return을 꼭 해주어야한다.
+//        return <div>Hello</div>;
+//    }
+//}
+//JSX = > react.createElement 를 하겠다라는 의미.
+//          <div>Hello</div>; 이것이라고 하는데 정확히는 좀더 공부해야함.
+//사용
+
+//ReactDOM.render(<ClassComponent />,document.querySelector('#root'));
+   
+//==================================================================
+//Function Component 작성법
+
+//정의1
+import React from 'react';
+
+//function FunctionComponent() {
+//    return <div>Hello</div>
+//}
+
+
+//정의2
+const FunctionComponent = () => <div>Hello</div>;
+
+
+
+
+
+//사용
+ReactDOM.render(<FunctionComponent />, document.querySelector("#root"));
+
+
+</script>
+
+</body>
+</html>
