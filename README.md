@@ -169,8 +169,13 @@ React 를 사용하지 않고 component 를 만들어사용하는 방식
     //null이기 때문에  그냥 <p> </p> 만 있음.
     //<p>`${props.message}:${props.count}` "</p>
 ------------------------------------------------------------------
+```
 
-//리액트 컴포넌트 만들기
+
+# 리액트 컴포넌트 만들기
+
+```html
+ 
 const Component = props =>{
     return React.createElement('p',null,`${props.message}:${props.count}`)
 }
@@ -300,6 +305,7 @@ ex)
 //    document.querySelector('#root')
 //);
 
+```
 
 
 //3. React.Fragment
@@ -319,6 +325,9 @@ ReactDOM.render(
 
 
 //4. 복잡한 리액트 Element 모임
+
+``` html
+
 //<div>
 //    <div>
 //        <h1>주제</h1>
@@ -350,7 +359,12 @@ ReactDOM.render(
         ),  
     document.querySelector("#root")
 );
-//4. 복잡한 리액트 Element 모임
+
+```
+# 4. 복잡한 리액트 Element 모임
+
+``` html 
+
 //<div>
 //    <div>
 //        <h1>주제</h1>
@@ -381,10 +395,12 @@ ReactDOM.render(
         ),  
     document.querySelector("#root")
 );
+```
 
 
-//===================================================================
-//JSX 가 무엇인가?
+---
+# JSX 가 무엇인가?
+
 //JSX 문법으로ㅓ 작성된 코드는 순수한 Javascript 로 컴파일하여 사용한다.
 //누가 해주나요? => babel
 
@@ -398,6 +414,9 @@ ReactDOM.render(
 
 //babel 사용하려면 
 //babel사이트 - setup - usage에 min.js 스크립트 복사하여 main 코드 파일에 추가하고
+
+``` html
+
 //<script type="text/babel"> 로 바꾸어주면됨.
 
 ReactDOM.render(
@@ -423,6 +442,8 @@ document.querySelector("#root")
 -최상위 요소가 하나여야한다. / 부모 하나.
 -최상위 요소 리턴하는 경우, ()로 감싸야한다.
 -자식들을 바로 랜더링 하고 싶으면, <>자식들</> 를 사용합니다. => Fragment
+
+``` html
 ex)
 <>
 
@@ -446,9 +467,10 @@ ex)
     </div>,
 
 </>   이렇게 하라는 의미이다. 만약 최상위가 두개 이상이라면.
-
+```
 -자바스크립트 표현식을 사용하려면, {표현식} 를 이용합니다.
 
+``` html
 const title = "주제!!!"
 
   <div>     --> 이게 type이고
@@ -460,7 +482,7 @@ const title = "주제!!!"
           </ul>
         </div>
     </div>
-
+```
 -if문은 사용할수없습니다.
     -삼항연산자 혹은 && 를 사용합니다.
 
