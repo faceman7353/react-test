@@ -254,6 +254,219 @@ const FunctionComponent = () => <div>Hello</div>;
 
 
 //사용
+ReactDOM.render(<FunctionComponent />, document.querySelector("#root"));
+```
+
+# React.createElement
+
+``` html
+
+React.createElement(3개의 인자.)
+
+React.createElement(
+    type , //태그 이름 문자열 | 리액트 컴포넌트 | React.Fragment
+    [props],  //리액트 컴포넌트에 넣어주는 데이터 객체
+    [... children]  // 자식으로 넣어주는 요소들
+)
+
+ex)
+
+       console.log(React);
+        console.log(ReactDOM);
+
+        //1. 태그 이름 문자열  type
+
+         //<h1>type 이 "태그 이름 문자열" 입니다</h1>   이렇게 들어감.
+        ReactDOM.render(
+                                    //null은 h1태그 안에 속성을 말함.
+            React.createElement('h1',null, `type 이 "태그 이름 문자열" 입니다.`),  //nul이라고 입력하면 h1태그에 어떠한 정보도 넣지 않겠다라는의미.
+            document.querySelector('#root')        
+            );      
+        
+
+        //2. 리액트 컴포넌트 type
+//const Component = () => {
+//    return React.createElement(
+//        'p',
+//        null,
+//        `type이 "React 컴포넌트" 입니다.`
+//        );
+//};
+
+//<Component></Component>  => <Component /> => <p>type이 "React 컴포넌트" 입니다.</p>
+//함수의 내용을 보여줌.
+//ReactDOM.render(
+//    React.createElement(Component,null,null),
+//    document.querySelector('#root')
+//);
+
+
+
+//3. React.Fragment
+ReactDOM.render(
+    React.createElement(
+        React.Fragment,
+    null,
+    `type이 "React Fragment" 입니다.`,
+    `type이 "React Fragment" 입니다.`,
+    `type이 "React Fragment" 입니다.`
+    ),
+    document.querySelector("#root")
+);
+     
+#root내부에 배열처럼 사용할수가있다.
+
+
+
+//4. 복잡한 리액트 Element 모임
+//<div>
+//    <div>
+//        <h1>주제</h1>
+//            <ul>
+//                <li>React</li>
+//                <li>Vue</li>
+//            </ul>
+//        </div>
+//    </div>
+//위와 같은 태그를 순수하게 React로 React.createElement로만 작성한다면??
+
+
+
+ReactDOM.render(
+    React.createElement(            //하나의 태그로 역할
+        "div",
+        null,
+        React.createElement(
+            "div",
+            null,
+            React.createElement('h1',null,"주제"),
+            React.createElement(
+                'ul',
+                null,
+                React.createElement('li',null,"React"),
+                React.createElement('li',null,"Vue")
+                )
+            )
+        ),  
+    document.querySelector("#root")
+);
+//4. 복잡한 리액트 Element 모임
+//<div>
+//    <div>
+//        <h1>주제</h1>
+//            <ul>
+//                <li>React</li>
+//                <li>Vue</li>
+//            </ul>
+//        </div>
+//    </div>
+//위와 같은 태그를 순수하게 React로 React.createElement로만 작성한다면??
+
+
+ReactDOM.render(
+    React.createElement(            //하나의 태그로 역할
+        "div",
+        null,
+        React.createElement(
+            "div",
+            null,
+            React.createElement('h1',null,"주제"),
+            React.createElement(
+                'ul',
+                null,
+                React.createElement('li',null,"React"),
+                React.createElement('li',null,"Vue")
+                )
+            )
+        ),  
+    document.querySelector("#root")
+);
+
+
+//===================================================================
+//JSX 가 무엇인가?
+//JSX 문법으로ㅓ 작성된 코드는 순수한 Javascript 로 컴파일하여 사용한다.
+//누가 해주나요? => babel
+
+
+
+//내가 작성한 어떤 코드를 => 순수하게 실행할수있는 자바스크립트
+//babel - 새로 나온 문법이나 기능들을 이해해서 그대로 표현해줄수있는 라이브러리
+//babel을 사용하면
+//<div>Hello</div>  => React.createElement("h1",null,"Hello") 이렇게 자동
+//바뀌게 되어 쉽고 편하게 사용할수있다
+
+//babel 사용하려면 
+//babel사이트 - setup - usage에 min.js 스크립트 복사하여 main 코드 파일에 추가하고
+//<script type="text/babel"> 로 바꾸어주면됨.
+
+ReactDOM.render(
+    <div>     --> 이게 type이고
+        <div>   --> 이것부터가 children 영역 이 된다.
+            <h1>주제</h1>
+            <ul>
+              <li>React</li>
+              <li>Vue</li>
+          </ul>
+        </div>
+    </div>,
+document.querySelector("#root")
+);
 
 ```
 
+# 왜 JSX를 쓰나요?
+//-----가독성 완승.
+//-----babel과 같은 컴파일 과정에서 문법적 오류를 인지하기 쉬움.
+
+### JSX 문법
+-최상위 요소가 하나여야한다. / 부모 하나.
+-최상위 요소 리턴하는 경우, ()로 감싸야한다.
+-자식들을 바로 랜더링 하고 싶으면, <>자식들</> 를 사용합니다. => Fragment
+ex)
+<>
+
+<div>     --> 이게 type이고
+        <div>   --> 이것부터가 children 영역 이 된다.
+            <h1>주제</h1>
+            <ul>
+              <li>React</li>
+              <li>Vue</li>
+          </ul>
+        </div>
+    </div>
+    <div>     --> 이게 type이고
+        <div>   --> 이것부터가 children 영역 이 된다.
+            <h1>주제</h1>
+            <ul>
+              <li>React</li>
+              <li>Vue</li>
+          </ul>
+        </div>
+    </div>,
+
+</>   이렇게 하라는 의미이다. 만약 최상위가 두개 이상이라면.
+
+-자바스크립트 표현식을 사용하려면, {표현식} 를 이용합니다.
+
+const title = "주제!!!"
+
+  <div>     --> 이게 type이고
+        <div>   --> 이것부터가 children 영역 이 된다.
+            <h1>{title}</h1>
+            <ul>
+              <li>React</li>
+              <li>Vue</li>
+          </ul>
+        </div>
+    </div>
+
+-if문은 사용할수없습니다.
+    -삼항연산자 혹은 && 를 사용합니다.
+
+
+-style을 이용해 인라인 스타일링이 가능합니다.
+-class대신 className을 사용해 class를 적용할수있습니다.
+-자식요소가 있으면 ,꼭 닫아야하고, 자식요소가 없으면 열어서 닫아야 한다.
+    -<p>니나노</p>
+    -</br>

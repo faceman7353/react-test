@@ -4,127 +4,123 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Examplr</title>
-
-    <style>
-        
-    </style>
+    <title>Example</title>
 
 </head>
 <body>
-    <div id="root"></div>
-    <!-- <button id="btn_plus"></button> -->
+    <div id="root"></div>   <!-- 이것을 돔이라고 함.-->
+
     <script crossorigin src="https://unpkg.com/react@17/umd/react.development.js"></script>
     <script crossorigin src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
     <script type="text/babel">
         console.log(React);
         console.log(ReactDOM);
 
-        //const root = document.querySelector("#root");
-        //const btn_plus = document.querySelector("#btn_plus");
+        //1. 태그 이름 문자열  type
+        //<h1>type 이 "태그 이름 문자열" 입니다</h1>   이렇게 들어감.
+      //  ReactDOM.render(
+                                       //null은 h1태그 안에 속성을 말함.
+       //     React.createElement('h1',null, `type 이 "태그 이름 문자열" 입니다.`),  //nul이라고 입력하면 h1태그에 어떠한 정보도 넣지 않겠다라는의미.
+  //          document.querySelector('#root')        
+//            );      
+        
+//2. 리액트 컴포넌트 type
+    //const Component = () => {
+    //    return React.createElement(
+    //        'p',
+//        null,
+//        `type이 "React 컴포넌트" 입니다.`
+//        );
+//};
 
-        //let i =0;
-
-        //root.innerHTML = "<p>int : 0</p>";
-
-
-       // btn_plus.addEventListener("click", () => {
-      //      root.innerHTML = `<p>init : ${i++}</p>`;
-     //   });
-
-//==================================================================
-//component를 만들어서 사용하는 방식 , 컴포넌트를 만들때 초기값 아래와같다.
- //   const component = {
-   //     message : `init`,
-    //    count : 0,
-     //   render(){
-//            return `<p>${this.message}${this.count}</p>`
-//        }
-//    };
-//    function render(rootElement, component){
-//        rootElement.innerHTML = component.render();
-//    }
-    //초기화
-//    render(document.querySelector('#root'), component);
-
-
-//    document.querySelector("#btn_plus").addEventListener("click",() => {
-//        component.message = "update";
-//        component.count = component.count + 1;
-
-//        render(document.querySelector('#root'), component);
-//    });
-
-//----------------------------------------------------------------------------------
-//리액트를 사용했을때
-
-//ReactDOM.render(/*리액트 컴포넌트*/, document.querySelector('#root'));
-
-//<p hello="world">    아래의 의미는 나는 p 태그를 쓸것이고 null값에 hello값을 넣을거야 라는의미.
-    //null이기 때문에  그냥 <p> </p> 만 있음.
-    //<p>`${props.message}:${props.count}` "</p>
-//리액트 컴포넌트 만들기
-//const Component = props =>{
-//    return React.createElement('p',null,`${props.message}:${props.count}`)
-//}
-
-
-
-
-
-//ReactDOM.render(React.createElement(Component, {message:`init`, count:0},null), 
-//document.querySelector('#root')
+//<Component></Component>  => <Component /> => <p>type이 "React 컴포넌트" 입니다.</p>
+//함수의 내용을 보여줌.
+//ReactDOM.render(
+//    React.createElement(Component,null,null),
+//    document.querySelector('#root')
 //);
 
-//document.querySelector("#btn_plus").addEventListener("click",() => {
-//    ReactDOM.render(
+
+//3. React.Fragment
+//ReactDOM.render(
+//    React.createElement(
+//        React.Fragment,
+ //   null,
+ //   `type이 "React Fragment" 입니다.`,
+//    `type이 "React Fragment" 입니다.`,
+//    `type이 "React Fragment" 입니다.`
+//    ),
+//    document.querySelector("#root")
+//);
+
+//4. 복잡한 리액트 Element 모임
+//<div>
+//    <div>
+//        <h1>주제</h1>
+//            <ul>
+//                <li>React</li>
+//                <li>Vue</li>
+//            </ul>
+//        </div>
+//    </div>
+//위와 같은 태그를 순수하게 React로 React.createElement로만 작성한다면??
+
+
+
+//ReactDOM.render(
+//    React.createElement(            //하나의 태그로 역할
+//        "div",
+//        null,
 //        React.createElement(
-//            Component, 
-//            {message:`update`, count:10},
- //           null
- //           ), 
-//            document.querySelector('#root')
-//        );
+//            "div",
+//            null,
+//            React.createElement('h1',null,"주제"),
+//            React.createElement(
+//                'ul',
+//                null,
+ //               React.createElement('li',null,"React"),
+ //               React.createElement('li',null,"Vue")
+ //               )
+ //           )
+//        ),  
+//    document.querySelector("#root")
+//);
 
-//        });
+//===================================================================
+//JSX 가 무엇인가?
+//JSX 문법으로ㅓ 작성된 코드는 순수한 Javascript 로 컴파일하여 사용한다.
+//누가 해주나요? => babel
 
-//==================================================================
-//Class Component 작성
-//정의
+//왜 JSX를 쓰나요?
+//-----가독성 완승.
+//-----babel과 같은 컴파일 과정에서 문법적 오류를 인지하기 쉬움.
 
-//class ClassComponent extends React.Component{
-//    render() {  //render 메소드 정의하고  return을 꼭 해주어야한다.
-//        return <div>Hello</div>;
-//    }
-//}
-//JSX = > react.createElement 를 하겠다라는 의미.
-//          <div>Hello</div>; 이것이라고 하는데 정확히는 좀더 공부해야함.
-//사용
+//내가 작성한 어떤 코드를 => 순수하게 실행할수있는 자바스크립트
+//babel - 새로 나온 문법이나 기능들을 이해해서 그대로 표현해줄수있는 라이브러리
+//babel을 사용하면
+//<div>Hello</div>  => React.createElement("h1",null,"Hello") 이렇게 자동
+//바뀌게 되어 쉽고 편하게 사용할수있다
 
-//ReactDOM.render(<ClassComponent />,document.querySelector('#root'));
-   
-//==================================================================
-//Function Component 작성법
+//babel 사용하려면 
+//babel사이트 - setup - usage에 min.js 스크립트 복사하여 main 코드 파일에 추가하고
+//<script type="text/babel"> 로 바꾸어주면됨.
 
-//정의1
-import React from 'react';
-
-//function FunctionComponent() {
-//    return <div>Hello</div>
-//}
-
-
-//정의2
-const FunctionComponent = () => <div>Hello</div>;
-
-
-
+ReactDOM.render(
+    <div>    
+        <div>
+            <h1>주제</h1>
+            <ul>
+              <li>React</li>
+              <li>Vue</li>
+          </ul>
+        </div>
+    </div>,
+document.querySelector("#root")
+);
 
 
-//사용
-ReactDOM.render(<FunctionComponent />, document.querySelector("#root"));
-
-
+     
 </script>
 
 </body>
