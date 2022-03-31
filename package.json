@@ -4,8 +4,8 @@
   "description": "---",
   "main": "index.js",
   "scripts": {
-    "dev":"parcel index.html",
-    "build":"parcel build index.html"
+    "dev": "parcel index.html",
+    "build": "parcel build index.html"
   },
   "repository": {
     "type": "git",
@@ -19,6 +19,7 @@
   },
   "homepage": "https://github.com/faceman7353/react-test#readme",
   "devDependencies": {
+    "@babel/plugin-syntax-jsx": "^7.16.7",
     "parcel-bundler": "^1.12.5"
   }
 }

@@ -482,7 +482,7 @@ const title = "주제!!!"
           </ul>
         </div>
     </div>
-```
+
 -if문은 사용할수없습니다.
     -삼항연산자 혹은 && 를 사용합니다.
 
@@ -492,3 +492,150 @@ const title = "주제!!!"
 -자식요소가 있으면 ,꼭 닫아야하고, 자식요소가 없으면 열어서 닫아야 한다.
     -<p>니나노</p>
     -</br>
+
+```
+
+# Props 와 State
+
+Props | State
+--|--
+컴포넌트 외부에서 컴포넌트에게 주는 데이터 | 컴포넌트 내부에서 변경할수있는 데이터
+둘다 변경이 발생하면 랜더가 다시 일어날수있습니다.
+
+
+# Render함수
+Props 와 State 를 바탕으로 컴포넌트를 그립니다.
+그리고 Props 와 State 가 변경되면 컴포넌트를 다시 그립니다.
+컴포넌트를 그리는 방법을 기술하는 함수가 렌더 함수입니다.
+
+
+Component                               Component
+                 props b , state b
+props a                  --->            props b
+state a                                  state b      
+
+다시 렌더 됨.
+
+---
+
+props 와 state 사용하는 예
+
+props
+
+``` html
+//props는 아래 Component의 {message="안녕하세요"} 이렇게 객체로 들어감.
+
+//function props
+
+function Component(props){
+    return (
+    <div>
+        <h1>{props.message} 이것은 함수로 만든 컴포넌트 입니다.</h1>
+    </div>
+    );
+}
+
+
+
+Component.defaultProps = {
+    message:"기본값"
+}
+
+
+
+
+//클래스 props
+class Component extends React.Component{
+
+state = {  //state 초기값 설정하는 방법1
+        count : 0
+    }
+
+
+
+   constructor(props) {  // state 초기값 설정하는 방법2
+        super(props);
+
+
+      
+       this.state = {count : 0}
+    }
+
+
+
+
+   render(){
+        return (
+     <div>
+       <h1>{this.props.message} 이것은 클래스로 만든 컴포넌트 입니다.</h1>
+        <p>{this.state.count}</p>
+     </div>
+    );
+    }
+
+
+ componentDidMount(){  //render가 끝난 직후에 state를 재정의할것임.
+        setTimeout(() =>{
+            //
+            // this.state.count = this.state.count + 1; 이렇게 하면 안됨.
+            
+            this.setState({count: this.state.count + 1});  //state 를 변경해주는 함수이름.
+        },1000);   //setState 설정하는 방법1
+        
+        //this.setState((previousState) => {  //setState 설정하는 방법2
+        //    const newState = { count: previousState.count + 1 }
+         //   return newState;
+        //})
+    }
+
+
+
+    //이 방법은 클래스에서만 사용가능.
+ //   static defaultProps = {
+ //       message:"기본값2"
+ //   }
+
+
+//}
+
+//message를 기본으로 나오는 멘트를 쓰고 싶다고 할때 
+//class에선 두가지방법이있음.
+//아래 같은 방법1   , 이 방법은 함수에서도 사용가능.
+//Component.defaultProps = {
+//    message:"기본값"
+//}
+
+
+//ReactDOM.render(
+//    <Component message="안녕하세요!!" />,
+//    document.querySelector("#root")
+//    );     
+
+
+ReactDOM.render(
+    <Component message="안녕하세요." />,document.querySelector("#root")
+  );     
+
+
+```
+
+state
+
+``` html
+state 는 항상 객체 여야한다.
+
+state = {
+    count = 0
+}
+```
+
+# Tip
+```
+@babel ...jsx 문구가 나와서 에러가 발생되면 
+
+npm install --save-dev @babel/plugin-syntax-jsx 
+
+터미널에 위와 같은 파일을 설치후 재 실행 하고 다시 해보면 잘 나옴.
+```
+
+
