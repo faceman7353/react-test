@@ -639,3 +639,23 @@ npm install --save-dev @babel/plugin-syntax-jsx
 ```
 
 
+
+# Event Handling
+
+HTML DOM에 클릭하면 이벤트가 발생하고 ,발생하면 그에 맞는 변경이 일어나도록 해야합니다.
+JSX에 이벤트를 설정할수있습니다.
+
+이벤트 명은 camelCase 로만 사용할수있습니다.
+    -onClick, onMouseEnter
+이벤트에 연결된 자바스크립트 코드는 함수입니다.
+    -이벤트명 = { 함수} 와 같이 씁니다.
+실제 DOM 요소들에만 사용 가능합니다.
+    -리액트 컴포넌트에 사용하면, 그냥 props 로 전달합니다.
+
+
+
+``` html
+
+
+
+```
